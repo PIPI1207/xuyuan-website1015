@@ -59,7 +59,7 @@
   <section id="xuyuan-carousel" class="bg-white py-6 md:py-10">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-4 md:mb-6">
-        校園剪影｜栩苑花園 × 栩如靈動
+        栩苑花園 × 栩如靈動
       </h2>
 
       <div class="swiper xuyuan-swiper rounded-2xl shadow-xl overflow-hidden">
@@ -116,21 +116,37 @@
       <div>
         <h3 class="text-xl font-semibold mb-3">聯絡我們</h3>
         <p class="text-slate-600">地址：新北市板橋區文化路二段182巷3弄50號2樓</p>
-        <p class="text-slate-600">電話：<a href="tel:0282573972" class="text-emerald-600">02-8257-3972</a></p>
-        <form id="leadForm" class="mt-4 space-y-3 bg-slate-50 p-4 rounded-xl border">
-          <div class="grid grid-cols-2 gap-3">
-  <input required name="家長姓名" placeholder="家長姓名" class="w-full p-3 border rounded-lg"/>
-  <input required name="聯絡電話" placeholder="聯絡電話" class="w-full p-3 border rounded-lg"/>
-</div>
+             <p class="text-slate-600">電話：<a href="tel:0282573972" class="text-emerald-600">02-8257-3972</a></p>
 
-<input type="email" name="email" placeholder="email（選填）" class="w-full p-3 border rounded-lg"/>
+      <form id="leadForm" class="mt-4 space-y-3 bg-slate-50 p-4 rounded-xl border">
+        <div class="grid grid-cols-2 gap-3">
+          <input required name="家長姓名" placeholder="家長姓名" class="w-full p-3 border rounded-lg"/>
+          <input required name="聯絡電話" placeholder="聯絡電話" class="w-full p-3 border rounded-lg"/>
+        </div>
 
-          <input name="孩子年級" placeholder="孩子年級（例：小六升國一）" class="w-full p-3 border rounded-lg"/>
-          <textarea name="想了解的課程/私校" placeholder="想了解的課程／私校" class="w-full p-3 border rounded-lg h-28"></textarea>
-          <button class="px-4 py-3 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">送出諮詢</button>
-          <p id="formMsg" class="text-sm text-slate-600"></p>
-        </form>
-      </div>
+        <input type="email" name="email" placeholder="Email（選填）" class="w-full p-3 border rounded-lg"/>
+
+        <select name="孩子年級" required class="w-full p-3 border rounded-lg bg-white">
+          <option value="" disabled selected>請選擇年級</option>
+          <option value="小學升國一">小學升國中</option>
+          <option value="國一">國一</option>
+          <option value="國二">國二</option>
+          <option value="國三">國三</option>
+        </select>
+
+        <select name="想了解的課程/私校" required class="w-full p-3 border rounded-lg bg-white">
+          <option value="" disabled selected>請選擇想了解的項目</option>
+          <option value="個別指導">個別指導</option>
+          <option value="國中小班制">國中小班制</option>
+          <option value="免費學習檢測">免費學習檢測</option>
+        </select>
+
+        <textarea name="備註" placeholder="其他需求／補充說明" class="w-full p-3 border rounded-lg h-28"></textarea>
+
+        <button class="px-4 py-3 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">送出諮詢</button>
+        <p id="formMsg" class="text-sm text-slate-600"></p>
+      </form>
+    </div>
       <div>
         <iframe class="w-full h-72 md:h-full rounded-xl border"
           loading="lazy" allowfullscreen
@@ -155,7 +171,7 @@
     navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
   });
 
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbwKD1HoHdwgdzVYyl_lRw1tK26sw4WMK5t04LYctWYpeud0HbSJdz-Vk9chUAt31Qfd/exec";
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbxstYsA7zE99xtINNqVXWeZoqt2Nkl2z0MR9VM4on670Wbb1ytk3z6d7fDlJ6xCaEPd/exec";
 
   const form = document.getElementById('leadForm');
   form.addEventListener('submit', async (e) => {
