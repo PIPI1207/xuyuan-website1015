@@ -15,15 +15,37 @@
   </style>
 </head>
 <body class="text-slate-800 bg-slate-50">
-  <header class="sticky top-0 z-40 glass border-b">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
-      <img src="images/logo.jpg" alt="栩苑文理短期補習班" class="h-9 w-9 object-contain">
-      <div class="text-sm md:text-base font-semibold">台北板橋私中國中補習班｜栩苑文理短期補習班</div>
-      <div class="ml-auto hidden md:flex items-center gap-3 text-sm">
-        <a href="#contact" class="hover:text-emerald-600">聯絡我們</a>
-      </div>
+<header class="sticky top-0 z-40 glass border-b">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
+    <img src="images/logo.jpg" alt="栩苑文理短期補習班" class="h-9 w-9 object-contain">
+    <div class="text-sm md:text-base font-semibold">台北板橋私中國中補習班｜栩苑文理短期補習班</div>
+
+    <!-- 📱 社群連結區 -->
+    <div class="ml-auto flex items-center gap-4">
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/profile.php?id=61580479036866" 
+         target="_blank" rel="noopener noreferrer"
+         class="hover:opacity-80 transition">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" 
+             alt="Facebook" class="w-5 h-5">
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/xuyuanbc/" 
+         target="_blank" rel="noopener noreferrer"
+         class="hover:opacity-80 transition">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" 
+             alt="Instagram" class="w-5 h-5">
+      </a>
+
+      <!-- 聯絡我們 -->
+      <a href="#contact" class="hidden md:inline-block hover:text-emerald-600 text-sm">
+        聯絡我們
+      </a>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <section id="home" class="bg-gradient-to-b from-emerald-50 to-transparent">
     <div class="max-w-6xl mx-auto px-4 py-10 md:py-14">
@@ -97,11 +119,14 @@
         <p class="text-slate-600">電話：<a href="tel:0282573972" class="text-emerald-600">02-8257-3972</a></p>
         <form id="leadForm" class="mt-4 space-y-3 bg-slate-50 p-4 rounded-xl border">
           <div class="grid grid-cols-2 gap-3">
-            <input required name="家長姓名" placeholder="家長姓名" class="w-full p-3 border rounded-lg"/>
-            <input required name="聯絡電話" placeholder="聯絡電話" class="w-full p-3 border rounded-lg"/>
-          </div>
+  <input required name="家長姓名" placeholder="家長姓名" class="w-full p-3 border rounded-lg"/>
+  <input required name="聯絡電話" placeholder="聯絡電話" class="w-full p-3 border rounded-lg"/>
+</div>
+
+<input type="email" name="email" placeholder="email（選填）" class="w-full p-3 border rounded-lg"/>
+
           <input name="孩子年級" placeholder="孩子年級（例：小六升國一）" class="w-full p-3 border rounded-lg"/>
-          <textarea name="需求" placeholder="想了解的課程／私校" class="w-full p-3 border rounded-lg h-28"></textarea>
+          <textarea name="想了解的課程/私校" placeholder="想了解的課程／私校" class="w-full p-3 border rounded-lg h-28"></textarea>
           <button class="px-4 py-3 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700">送出諮詢</button>
           <p id="formMsg" class="text-sm text-slate-600"></p>
         </form>
@@ -130,7 +155,7 @@
     navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
   });
 
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbz8EMDRRUMea6zELBQjgUF9K1AJ-8W4lg7D-We7ruL4s9BWfbhhFnxxbbQOPRgm4y0/exec";
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbwKD1HoHdwgdzVYyl_lRw1tK26sw4WMK5t04LYctWYpeud0HbSJdz-Vk9chUAt31Qfd/exec";
 
   const form = document.getElementById('leadForm');
   form.addEventListener('submit', async (e) => {
@@ -140,15 +165,26 @@
     btn.disabled = true; btn.textContent = '送出中…';
     const data = Object.fromEntries(new FormData(form).entries());
     try {
-      const res = await fetch(scriptUrl, { method: 'POST', body: JSON.stringify(data) });
-      if (!res.ok) throw new Error('network');
-      msg.textContent = '已收到，將盡快與您聯繫！'; msg.classList.remove('text-red-600');
-      form.reset();
-    } catch (err) {
-      msg.textContent = '送出失敗，請稍後再試或來電聯繫。'; msg.classList.add('text-red-600');
-    } finally {
-      btn.disabled = false; btn.textContent = '送出諮詢';
-    }
+  const res = await fetch(scriptUrl, { method: 'POST', body: JSON.stringify(data) });
+  if (!res.ok) throw new Error('network');
+  msg.textContent = '已收到，將盡快與您聯繫！';
+  msg.classList.remove('text-red-600');
+  msg.classList.add('text-emerald-600'); // ✅ 新增：讓訊息變成綠色
+  form.reset();
+
+  // ✅ 新增：訊息 4 秒後自動清空
+  setTimeout(() => {
+    msg.textContent = '';
+  }, 4000);
+
+} catch (err) {
+  msg.textContent = '送出失敗，請稍後再試或來電聯繫。';
+  msg.classList.add('text-red-600');
+} finally {
+  btn.disabled = false;
+  btn.textContent = '送出諮詢';
+}
+
   });
 </script>
 
